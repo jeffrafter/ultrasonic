@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ultrasonic - <%= @title || yield(:title) || "Beyond sound." -%></title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="Description" content="<%= yield :description -%>" />
+    <meta name="Keywords" content="<%= yield :keywords -%>" />
+    <%= stylesheet_link_tag 'ultrasonic' %>
+    <%= stylesheet_link_tag 'scaffold' %>
+  </head>
+  <body>  
+    <div id="header">
+      <div class="center">
+        <% if current_user %>
+          <div id="user">You are signed in as <%= link_to current_user.email, current_user.url %>. <a href="/signout">Sign out?</a></div>
+        <% else %>
+          <div id="user">You are not signed in. <a href="/signin">Sign in</a> or <a href="/signup">create a new account</a>.</div>
+        <% end %>
+      </div>        
+    </div>
+    <div id="frame">
+      <div id="screen">&nbsp;</div>
+      <div id="inset" class="center">
+        <div id="content">          
+          <div id="notice"><%= [flash[:notice], flash[:error], flash[:failure], flash[:success]].compact.join(" ") %></div>  
+          <%= yield %>      
+        </div>  
+        <div id="sidebar">
+          <div id="statistics">
+          </div>
+          <div id="map">          
+          </div>
+        </div>
+        <div id="footer">
+          <div id="banner">
+            <div style="white-space:nowrap;"></div>            
+          </div>
+          <div class="left corner"></div>        
+          <div class="right corner"></div>                  
+        </div>
+      </div>  
+    </div>  
+  </body>
+</html>
